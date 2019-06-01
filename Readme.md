@@ -1,7 +1,7 @@
 # Учебный проект «Код и Магия» [![Build status][travis-image]][travis-url]
 
 * Студент: [Кирилл](https://up.htmlacademy.ru/javascript/17/user/927471).
-* Наставник: `Неизвестно`.
+* Наставник: [Игорь Шевченко](https://htmlacademy.ru/profile/id149304).
 
 ---
 
