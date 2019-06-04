@@ -192,20 +192,16 @@
   //Установите ширину мага wizardWidth равной 70.
   var wizardWidth = 70;
   //Задайте переменной getWizardHeight функцию, которая возвращает пропорциональную высоту мага, то есть высота мага — это пропорция 1.337 * ширина мага.
-  var wizardHeight;
   var getWizardHeight = function () {
-    wizardHeight = 1.337 * wizardWidth;
-    return wizardHeight;
+    return 1.337 * wizardWidth;
   };
   //Определите функцию getWizardX c одним параметром — width. Игра будет вызывать вашу функцию и передавать в неё этот параметр (который обозначает ширину игровой области).
   var getWizardX = function (width) {
-    var wizardX = width / 2;
-    return wizardX;
+    return width / 2 - wizardWidth / 2;
   };
   //Определите функцию getWizardY c одним параметром — height. Игра будет вызывать вашу функцию и передавать в неё этот параметр (который обозначает высоту игровой области).
   var getWizardY = function (height) {
-    var wizardY = 2/3 * height - wizardHeight;
-    return wizardY;
+    return 1/3 * height;
   };
 </script>
 <script src="js/game.js"></script>
