@@ -54,7 +54,7 @@ var renderHystogram = function (ctx, namePlayer, timePlayer) {
     ctx.fillText(namePlayer[i], CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * i, CLOUD_HEIGHT - GAP);
     ctx.fillText(time, CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * i, CLOUD_HEIGHT - FONT_SIZE - GAP - FONT_GAP - columnHeight);
   }
-}
+};
 
 window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
