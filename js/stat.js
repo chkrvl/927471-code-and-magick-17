@@ -19,7 +19,7 @@ var renderCloud = function (ctx, x, y, color) {
 var getMaxElement = function (arr) {
   var maxElement = arr[0];
 
-  for (var i = 0; i < arr.length; i++) {
+  for (var i = 1; i < arr.length; i++) {
     if (arr[i] > maxElement) {
       maxElement = arr[i];
     }
@@ -27,6 +27,19 @@ var getMaxElement = function (arr) {
 
   return maxElement;
 };
+
+var paintStatisticBar = function (namePlayer) {
+  var colorBar;
+  var opacityBar = Math.random();
+
+  if (namePlayer === 'Вы') {
+    colorBar = 'rgba(255, 0, 0, 1)';
+  } else {
+    colorBar = 'rgba(0, 0, 255, ' + opacityBar + ')';
+  }
+
+  return colorBar;
+}
 
 window.renderStatistics = function (ctx, names, times) {
   renderCloud(ctx, CLOUD_X + GAP, CLOUD_Y + GAP, 'rgba(0, 0, 0, 0.7)');
@@ -41,18 +54,10 @@ window.renderStatistics = function (ctx, names, times) {
   var maxTime = getMaxElement(times);
 
   for (var i = 0; i < names.length; i++) {
-    var colorBar;
-    var opacityBar = Math.random();
     var time = Math.round(times[i]);
     var columnHeight = (time * COLUMN_MAX_HEIGHT) / maxTime;
 
-    if (names[i] === 'Вы') {
-      colorBar = 'rgba(255, 0, 0, 1)';
-    } else {
-      colorBar = 'rgba(0, 0, 255,' + opacityBar + ')';
-    }
-
-    ctx.fillStyle = colorBar;
+    ctx.fillStyle = paintStatisticBar(names[i]);
     ctx.fillRect(CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * i, CLOUD_HEIGHT - FONT_SIZE - GAP, COLUMN_WIDTH, -columnHeight);
     ctx.fillStyle = '#000';
     ctx.fillText(names[i], CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * i, CLOUD_HEIGHT - GAP);
