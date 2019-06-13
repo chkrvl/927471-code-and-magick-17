@@ -41,18 +41,22 @@ var paintStatisticBar = function (namePlayer) {
   return colorBar;
 };
 
+var renderStatisticBar = function (ctx, maxTime, timePlayer, namePlayer, counter) {
+  var time = Math.round(timePlayer);
+  var columnHeight = (time * COLUMN_MAX_HEIGHT) / maxTime;
+
+  ctx.fillStyle = paintStatisticBar(namePlayer);
+  ctx.fillRect(CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * counter, CLOUD_HEIGHT - FONT_SIZE - GAP, COLUMN_WIDTH, -columnHeight);
+  ctx.fillStyle = '#000';
+  ctx.fillText(namePlayer, CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * counter, CLOUD_HEIGHT - GAP);
+  ctx.fillText(time, CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * counter, CLOUD_HEIGHT - FONT_SIZE - GAP - FONT_GAP - columnHeight);
+}
+
 var renderHystogram = function (ctx, namePlayer, timePlayer) {
   var maxTime = getMaxElement(timePlayer);
 
   for (var i = 0; i < namePlayer.length; i++) {
-    var time = Math.round(timePlayer[i]);
-    var columnHeight = (time * COLUMN_MAX_HEIGHT) / maxTime;
-
-    ctx.fillStyle = paintStatisticBar(namePlayer[i]);
-    ctx.fillRect(CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * i, CLOUD_HEIGHT - FONT_SIZE - GAP, COLUMN_WIDTH, -columnHeight);
-    ctx.fillStyle = '#000';
-    ctx.fillText(namePlayer[i], CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * i, CLOUD_HEIGHT - GAP);
-    ctx.fillText(time, CLOUD_X + COLUMN_GAP + (COLUMN_GAP + COLUMN_WIDTH) * i, CLOUD_HEIGHT - FONT_SIZE - GAP - FONT_GAP - columnHeight);
+    renderStatisticBar (ctx, maxTime, timePlayer[i], namePlayer[i], i);
   }
 };
 
