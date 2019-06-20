@@ -33,9 +33,7 @@ setupOpen.addEventListener('keydown', function (evt) {
   }
 });
 
-setupClose.addEventListener('click', function () {
-  closePopup();
-});
+setupClose.addEventListener('click', closePopup);
 
 setupClose.addEventListener('keydown', function (evt) {
   if (evt.keyCode === ENTER_KEYCODE) {
@@ -45,6 +43,7 @@ setupClose.addEventListener('keydown', function (evt) {
 
 var setupPlayer = document.querySelector('.setup-player');
 var wizardCoat = setupPlayer.querySelector('.wizard-coat');
+var wizardCoatInput = setupPlayer.querySelector('.wizard-coat-input');
 var wizardEyes = setupPlayer.querySelector('.wizard-eyes');
 var wizardEyesInput = document.querySelector('.wizard-eyes-input');
 var wizardFireball = setupPlayer.querySelector('.setup-fireball-wrap');
@@ -55,6 +54,7 @@ var changeCoatColor = function () {
     return color !== wizardCoat.style.fill;
   });
   wizardCoat.style.fill = getRandomElement(notCurrentColors);
+  wizardCoatInput.value = wizardCoat.style.fill;
 };
 
 var changeEyesColor = function () {
