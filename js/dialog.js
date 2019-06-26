@@ -16,8 +16,8 @@
 
   var closePopup = function () {
     setup.classList.add('hidden');
-    setup.style.top = DEFAULT_OFFSET_TOP;
-    setup.style.left = DEFAULT_OFFSET_LEFT;
+    // setup.style = undefined;
+    setup.removeAttribute('style');
     document.removeEventListener('keydown', onPopupEscPress);
   };
 
@@ -43,9 +43,6 @@
   });
 
   var dialogHandler = setup.querySelector('.upload');
-
-  var DEFAULT_OFFSET_TOP = '80px';
-  var DEFAULT_OFFSET_LEFT = '50%';
 
   dialogHandler.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
