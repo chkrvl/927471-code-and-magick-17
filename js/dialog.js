@@ -1,23 +1,17 @@
 'use strict';
 (function () {
-  var ESC_KEYCODE = 27;
-  var ENTER_KEYCODE = 13;
-
   var setup = document.querySelector('.setup');
   var setupOpen = document.querySelector('.setup-open');
   var setupClose = setup.querySelector('.setup-close');
   var userNameInput = setup.querySelector('.setup-user-name');
 
   var onPopupEscPress = function (evt) {
-    if (evt.keyCode === ESC_KEYCODE && document.activeElement !== userNameInput) {
-      closePopup();
-    }
+    window.util.isEscEvent(evt, closePopup, userNameInput);
   };
 
   var closePopup = function () {
     setup.classList.add('hidden');
-    setup.style.top = DEFAULT_OFFSET_TOP;
-    setup.style.left = DEFAULT_OFFSET_LEFT;
+    setup.removeAttribute('style');
     document.removeEventListener('keydown', onPopupEscPress);
   };
 
@@ -29,23 +23,16 @@
   setupOpen.addEventListener('click', openPopup);
 
   setupOpen.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ENTER_KEYCODE) {
-      openPopup();
-    }
+    window.util.isEnterEvent(evt, openPopup);
   });
 
   setupClose.addEventListener('click', closePopup);
 
   setupClose.addEventListener('keydown', function (evt) {
-    if (evt.keyCode === ENTER_KEYCODE) {
-      closePopup();
-    }
+    window.util.isEnterEvent(evt, closePopup);
   });
 
   var dialogHandler = setup.querySelector('.upload');
-
-  var DEFAULT_OFFSET_TOP = '80px';
-  var DEFAULT_OFFSET_LEFT = '50%';
 
   dialogHandler.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
