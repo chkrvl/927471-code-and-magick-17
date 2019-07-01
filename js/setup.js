@@ -65,29 +65,10 @@
     return arr[random];
   };
 
-  var getRandomWizard = function (arr) {
-    return {
-      name: getRandomElement(arr.firstNameList) + ' ' + getRandomElement(arr.secondNameList),
-      coatColor: getRandomElement(arr.coatColorList),
-      eyesColor: getRandomElement(arr.eyesColorList)
-    };
-  };
-
   var similarListElement = setup.querySelector('.setup-similar-list');
   var similarWizardTemplate = document.querySelector('#similar-wizard-template')
       .content
       .querySelector('.setup-similar-item');
-
-
-  var getWizards = function (quantity) {
-    var wizards = [];
-
-    for (var i = 0; i < quantity; i++) {
-      wizards.push(getRandomWizard(wizardData));
-    }
-
-    return wizards;
-  };
 
   var renderWizard = function (wizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
@@ -99,20 +80,10 @@
     return wizardElement;
   };
 
-  // var wizards = getWizards(WIZARD_QUANTITY);
-  // var fragment = document.createDocumentFragment();
-
-  // for (var i = 0; i < WIZARD_QUANTITY; i++) {
-  //   fragment.appendChild(renderWizard(wizards[i]));
-  // }
-  // similarListElement.appendChild(fragment);
-
-  // setup.querySelector('.setup-similar').classList.remove('hidden');
-
   var successHandler = function (wizards) {
     var fragment = document.createDocumentFragment();
 
-    for (var i = 0; i < 4; i++) {
+    for (var i = 0; i < WIZARD_QUANTITY; i++) {
       fragment.appendChild(renderWizard(wizards[i]));
     }
     similarListElement.appendChild(fragment);
@@ -139,7 +110,7 @@
   form.addEventListener('submit', function (evt) {
     evt.preventDefault();
 
-    window.backend.save(new FormData(form), function (response) {
+    window.backend.save(new FormData(form), function () {
       setup.classList.add('hidden');
     }, errorHandler);
   });
