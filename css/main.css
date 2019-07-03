@@ -63,6 +63,21 @@ form
     background-color: #414342;
 }
 
+.warning
+{
+    position: absolute;
+    z-index: 100;
+    left: 0;
+    right: 0;
+
+    margin: 0 auto;
+
+    text-align: center;
+    font-size: 30px;
+
+    background-color: red;
+}
+
 .section-title
 {
     position: relative;
